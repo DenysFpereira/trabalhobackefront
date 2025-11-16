@@ -1,0 +1,70 @@
+<div class="container-geral-listagem">
+  <div class="card-listagem">
+    
+    <header>
+      <div class="header-info">
+        <h1>Lançamento de Presença por Aula</h1>
+        <p>Selecione a disciplina, a data da aula e carregue os alunos.</p>
+      </div>
+    </header>
+
+    <div class="seletor-wrapper">
+      <div class="form-group">
+        <label for="disciplina">Disciplina</label>
+        <select id="disciplina" [(ngModel)]="disciplinaSelecionadaId" (change)="onDisciplinaChange()">
+          <option [ngValue]="null" disabled>Selecione uma disciplina...</option>
+          <option *ngFor="let disc of listaDisciplinas" [ngValue]="disc.id">
+            {{ disc.descricao }}
+          </option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="data">Data da Aula</label>
+        <input id="data" type="date" [(ngModel)]="dataAula" (change)="onDisciplinaChange()">
+      </div>
+
+      <button class="btn-carregar" (click)="onCarregarAlunos()" [disabled]="!disciplinaSelecionadaId || !dataAula">
+        Carregar Alunos
+      </button>
+    </div>
+
+    <div class="tabela-wrapper" *ngIf="alunosCarregados">
+      
+      <div class="acoes-massa">
+        <button (click)="marcarTodos(false)">Marcar Todos como Presente</button>
+        <button (click)="marcarTodos(true)">Marcar Todos como Falta</button>
+      </div>
+
+      <table>
+        <thead>
+          <tr>
+            <th class="ra-col">RA</th>
+            <th class="aluno-nome">Aluno</th>
+            <th class="presente-col">Presente</th>
+            <th class="falta-col">Falta</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let aluno of listaAlunos">
+            <td>{{ aluno.ra }}</td>
+            <td class="nome-aluno">{{ aluno.nome }}</td>
+            <td class="checkbox-cell">
+              <input type="radio" [name]="'presenca-' + aluno.id" [checked]="!aluno.falta" (change)="aluno.falta = false">
+            </td>
+            <td class="checkbox-cell">
+              <input type="radio" [name]="'presenca-' + aluno.id" [checked]="aluno.falta" (change)="aluno.falta = true">
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="actions-footer">
+        <button class="btn-salvar" (click)="onSalvarPresenca()">
+          Salvar Lançamento de Presença
+        </button>
+      </div>
+    </div>
+
+  </div>
+</div>

@@ -1,0 +1,51 @@
+<div class="boletim-container">
+  <div class="boletim-card">
+    
+    <header>
+      <h1>Boletim Acadêmico</h1>
+      <h2 *ngIf="alunoNome && !erro">{{ alunoNome }} (RA: {{ ra }})</h2>
+      <h2 *ngIf="erro" class="erro-ra">{{ erro }}</h2>
+    </header>
+
+    <div class="tabela-wrapper" *ngIf="!erro">
+      <table>
+        <thead>
+          <tr>
+            <th>Disciplina</th>
+            <th>1º Bim</th>
+            <th>2º Bim</th>
+            <th>Média Final</th>
+            <th>Total Faltas</th>
+            <th>Situação</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of boletim">
+            <td class="nome-disciplina">{{ item.disciplina.descricao }}</td>
+            <td>{{ item.nota1Bim ?? '--' }}</td>
+            <td>{{ item.nota2Bim ?? '--' }}</td>
+            <td class="media-final">{{ calcularMedia(item) | number:'1.1-1' }}</td>
+            <td>{{ item.totalFaltas ?? 0 }}</td>
+            <td>
+              <span class="status" [ngClass]="{
+                'status-aprovado': item.situacao === 'APROVADO', 
+                'status-reprovado': item.situacao === 'REPROVADO',
+                'status-em-curso': item.situacao === 'EM_CURSO'
+              }">
+                {{ item.situacao }}
+              </span>
+            </td>
+          </tr>
+          <tr *ngIf="boletim.length === 0 && !erro">
+            <td colspan="6" class="vazio">Nenhuma disciplina matriculada para este aluno.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="actions-footer">
+      <a routerLink="/acesso-aluno" class="link-voltar">Voltar e consultar outro RA</a>
+    </div>
+
+  </div>
+</div>

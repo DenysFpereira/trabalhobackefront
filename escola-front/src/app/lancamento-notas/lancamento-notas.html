@@ -1,0 +1,88 @@
+<div class="container-geral">
+
+  <div class="card-container">
+
+    <div class="seletor-container">
+      <label for="disciplina-select">Selecione a Disciplina:</label>
+      <select id="disciplina-select" 
+              [(ngModel)]="disciplinaSelecionadaId" 
+              (change)="onDisciplinaSelecionada()">
+              
+        <option [ngValue]="null">-- Escolha uma disciplina --</option>
+        
+        <option *ngFor="let disc of listaDisciplinas" [ngValue]="disc.id">
+          {{ disc.descricao }} (Cód: {{ disc.codigo }})
+        </option>
+      </select>
+    </div>
+
+    <div *ngIf="disciplinaSelecionadaId" class="tabela-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th rowspan="2">RA</th>
+            <th rowspan="2" class="aluno-nome">Aluno</th>
+            <th class="bimestre-header">1º Bimestre</th>
+            <th class="bimestre-header">2º Bimestre</th>
+            <th rowspan="2">Média Final</th>
+            <th rowspan="2">Total Faltas</th>
+            <th rowspan="2">Situação</th>
+          </tr>
+          <tr>
+            <th>Nota</th>
+            <th>Nota</th>
+          </tr>
+        </thead>
+  
+        <tbody>
+          <tr *ngFor="let item of listaAlunos">
+            <td>{{ item.aluno.ra }}</td>
+            <td class="aluno-nome">{{ item.aluno.nome }}</td>
+            
+            <td>
+              <input type="number" class="input-nota" 
+                     [(ngModel)]="item.nota1Bim"
+                     (change)="atualizarMediaNaTela(item)">
+            </td>
+
+            <td>
+              <input type="number" class="input-nota" 
+                     [(ngModel)]="item.nota2Bim"
+                     (change)="atualizarMediaNaTela(item)">
+            </td>
+            
+            <td class="media-final">
+              {{ item.mediaFinal | number:'1.1-1' }}
+            </td>
+
+            <td class="faltas-total">
+              {{ item.totalFaltas ?? 'N/A' }}
+            </td>
+            
+            <td>
+              <span class="status" 
+                    [ngClass]="{
+                      'status-aprovado': item.situacao === 'APROVADO',
+                      'status-reprovado': item.situacao === 'REPROVADO',
+                      'status-em-curso': item.situacao === 'EM_CURSO'
+                    }">
+                {{ item.situacao }}
+              </span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div *ngIf="!disciplinaSelecionadaId" class="placeholder-tabela">
+      <p>Selecione uma disciplina para ver os alunos matriculados.</p>
+    </div>
+
+    <div *ngIf="disciplinaSelecionadaId" class="actions">
+      <button class="btn-salvar" (click)="salvarLancamentos()">
+        Salvar Notas
+      </button>
+    </div>
+
+  </div>
+</div>

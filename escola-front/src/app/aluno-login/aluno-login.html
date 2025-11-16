@@ -1,0 +1,26 @@
+<div class="portal-container">
+  <div class="portal-box">
+    <div class="portal-header">
+      <h1>Acesso do Aluno</h1>
+      <p>Digite seu RA para consultar o boletim</p>
+    </div>
+    
+    <div class="portal-actions">
+      <div class="form-group">
+        <label for="ra">RA (Registro Acadêmico)</label>
+        <input 
+          id="ra" 
+          type="text" 
+          placeholder="Ex: 60005023" 
+          [(ngModel)]="ra"
+          (keyup.enter)="buscarBoletim()">
+      </div>
+      
+      <button (click)="buscarBoletim()" class="btn-buscar">
+        Buscar Boletim
+      </button>
+
+      <a routerLink="/" class="link-voltar">Voltar</a>
+    </div>
+  </div>
+</div>

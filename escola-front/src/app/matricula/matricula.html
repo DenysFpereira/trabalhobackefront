@@ -1,0 +1,36 @@
+<div class="form-container">
+  <header>
+    <h1>Matricular Aluno em Disciplina</h1>
+    <p>Selecione o aluno e a disciplina para criar a matrícula.</p>
+  </header>
+
+  <form [formGroup]="matriculaForm" (ngSubmit)="onSubmit()" class="prisma-form">
+
+    <div class="form-group">
+      <label for="aluno">Aluno</label>
+      <select id="aluno" formControlName="alunoId">
+        <option [ngValue]="null" disabled>Selecione um aluno...</option>
+        <option *ngFor="let aluno of listaAlunos" [ngValue]="aluno.id">
+          {{ aluno.nome }} (RA: {{ aluno.ra }})
+        </option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="disciplina">Disciplina</label>
+      <select id="disciplina" formControlName="disciplinaId">
+        <option [ngValue]="null" disabled>Selecione uma disciplina...</option>
+        <option *ngFor="let disc of listaDisciplinas" [ngValue]="disc.id">
+          {{ disc.descricao }} (Cód: {{ disc.codigo }})
+        </option>
+      </select>
+    </div>
+    
+    <div class="form-actions">
+      <button type="submit" class="btn-salvar" [disabled]="matriculaForm.invalid">
+        Matricular
+      </button>
+    </div>
+
+  </form>
+</div>

@@ -1,0 +1,113 @@
+:host {
+  --azul-marinho: #182246;
+  --dourado-mostarda: #d4a24c;
+  --cinza-claro: #e9e9ef;
+  --branco: #ffffff;
+  --verde-ativo: #28a745;
+  --cinza-inativo: #6c757d;
+  --vermelho-reprovado: #dc3545;
+}
+
+.boletim-container {
+  padding: 40px;
+  font-family: Arial, sans-serif;
+  background-color: var(--cinza-claro);
+  min-height: 100vh;
+}
+
+.boletim-card {
+  max-width: 1000px;
+  margin: 0 auto;
+  background-color: var(--branco);
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+}
+
+header {
+  border-bottom: 2px solid var(--cinza-claro);
+  padding: 20px 30px;
+  background-color: var(--azul-marinho);
+  color: var(--branco);
+  border-bottom: 4px solid var(--dourado-mostarda);
+}
+
+header h1 {
+  margin: 0;
+}
+header h2 {
+  margin: 5px 0 0;
+  font-weight: normal;
+  font-size: 1.1rem;
+  color: var(--cinza-claro);
+}
+header h2.erro-ra {
+  color: #ffc107;
+  font-weight: bold;
+}
+
+.tabela-wrapper {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 15px 20px;
+  text-align: center;
+  border-bottom: 1px solid var(--cinza-claro);
+}
+
+thead th {
+  background-color: #f4f6f8;
+  color: #333;
+}
+
+.nome-disciplina {
+  text-align: left;
+  font-weight: bold;
+  color: var(--azul-marinho);
+}
+
+.media-final {
+  font-weight: bold;
+}
+
+.status {
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 0.85rem;
+  font-weight: bold;
+  color: white;
+}
+.status-aprovado { background-color: var(--verde-ativo); }
+.status-reprovado { background-color: var(--vermelho-reprovado); }
+.status-em-curso { 
+  background-color: #ffc107; 
+  color: #333;
+}
+
+.vazio {
+  text-align: center;
+  padding: 40px;
+  color: #777;
+}
+
+.actions-footer {
+  padding: 20px;
+  text-align: center;
+  background-color: #f9f9f9;
+  border-top: 1px solid var(--cinza-claro);
+}
+
+.link-voltar {
+  color: var(--azul-royal);
+  text-decoration: none;
+  font-weight: bold;
+}
+.link-voltar:hover {
+  text-decoration: underline;
+}

@@ -1,0 +1,56 @@
+<div class="form-container">
+  <header>
+    <h1 *ngIf="!modoEdicao">Cadastro de Aluno</h1>
+    <h1 *ngIf="modoEdicao">Editar Aluno (ID: {{ alunoId }})</h1>
+    
+    <p *ngIf="!modoEdicao">Preencha os dados para registrar um novo aluno.</p>
+    <p *ngIf="modoEdicao">Altere os dados do aluno.</p>
+  </header>
+
+  <form [formGroup]="alunoForm" (ngSubmit)="onSubmit()" class="prisma-form">
+
+    <div class="form-group">
+      <label for="nome">Nome Completo</label>
+      <input id="nome" type="text" formControlName="nome" placeholder="Ex: João da Silva">
+      <small *ngIf="alunoForm.get('nome')?.invalid && alunoForm.get('nome')?.touched">
+        Nome é obrigatório.
+      </small>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label for="cpf">CPF (somente números)</label>
+        <input id="cpf" type="text" formControlName="cpf" placeholder="12345678901" maxlength="11" [readOnly]="modoEdicao">
+        <small *ngIf="alunoForm.get('cpf')?.invalid && alunoForm.get('cpf')?.touched">
+          CPF inválido (deve ter 11 dígitos).
+        </small>
+      </div>
+      <div class="form-group">
+        <label for="ra">RA (Registro Acadêmico)</label>
+        <input id="ra" type="text" formControlName="ra" placeholder="Ex: 60005023" [readOnly]="modoEdicao">
+        <small *ngIf="alunoForm.get('ra')?.invalid && alunoForm.get('ra')?.touched">
+          RA é obrigatório.
+        </small>
+      </div>
+    </div>
+    
+    <div class="form-row">
+      <div class="form-group">
+        <label for="anoIngresso">Ano de Ingresso</label>
+        <input id="anoIngresso" type="number" formControlName="anoIngresso">
+      </div>
+      <div class="form-group">
+        <label for="periodoAtual">Período Atual</label>
+        <input id="periodoAtual" type="number" formControlName="periodoAtual" placeholder="Ex: 4">
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <button type="submit" class="btn-salvar" [disabled]="alunoForm.invalid">
+        <span *ngIf="!modoEdicao">Salvar Aluno</span>
+        <span *ngIf="modoEdicao">Atualizar Aluno</span>
+      </button>
+    </div>
+
+  </form>
+</div>

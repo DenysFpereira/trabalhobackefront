@@ -1,0 +1,37 @@
+<div class="form-container">
+  <header>
+    <h1 *ngIf="!modoEdicao">Cadastro de Professor</h1>
+    <h1 *ngIf="modoEdicao">Editar Professor (ID: {{ professorId }})</h1>
+    
+    <p *ngIf="!modoEdicao">Preencha os dados para registrar um novo professor.</p>
+    <p *ngIf="modoEdicao">Altere os dados do professor.</p>
+  </header>
+
+  <form [formGroup]="professorForm" (ngSubmit)="onSubmit()" class="prisma-form">
+
+    <div class="form-group">
+      <label for="nome">Nome Completo</label>
+      <input id="nome" type="text" formControlName="nome" placeholder="Ex: Ana Maria Braga">
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label for="cpf">CPF (somente números)</label>
+        <input id="cpf" type="text" formControlName="cpf" placeholder="12345678901" maxlength="11" [readOnly]="modoEdicao">
+      </div>
+      
+      <div class="form-group">
+        <label for="matricula">Matrícula</label>
+        <input id="matricula" type="text" formControlName="matricula" placeholder="Ex: P900123" [readOnly]="modoEdicao">
+      </div>
+    </div>
+    
+    <div class="form-actions">
+      <button type="submit" class="btn-salvar" [disabled]="professorForm.invalid">
+        <span *ngIf="!modoEdicao">Salvar Professor</span>
+        <span *ngIf="modoEdicao">Atualizar Professor</span>
+      </button>
+    </div>
+
+  </form>
+</div>

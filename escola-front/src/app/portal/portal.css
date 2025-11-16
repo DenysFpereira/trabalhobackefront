@@ -1,0 +1,80 @@
+:host {
+  --azul-marinho: #182246;
+  --dourado-mostarda: #d4a24c;
+  --azul-royal: #4046b5;
+  --cinza-claro: #e9e9ef;
+  --branco: #ffffff;
+}
+
+.portal-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: var(--cinza-claro);
+  font-family: Arial, sans-serif;
+}
+
+.portal-box {
+  width: 450px;
+  background-color: var(--branco);
+  border-radius: 8px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.portal-header {
+  background-color: var(--azul-marinho);
+  color: var(--branco);
+  padding: 30px 40px;
+  text-align: center;
+  border-bottom: 5px solid var(--dourado-mostarda);
+}
+
+.portal-header h1 {
+  margin: 0;
+  font-size: 2rem;
+}
+.portal-header p {
+  margin: 5px 0 0;
+  font-size: 1rem;
+  opacity: 0.8;
+}
+
+.portal-actions {
+  display: flex;
+  flex-direction: column;
+  padding: 40px;
+  gap: 20px;
+}
+
+.portal-link {
+  display: block;
+  padding: 20px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 1.2rem;
+  font-weight: bold;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.professor {
+  background-color: var(--azul-royal);
+  color: var(--branco);
+}
+.professor:hover {
+  background-color: var(--azul-marinho);
+  transform: translateY(-3px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.aluno {
+  background-color: var(--dourado-mostarda);
+  color: var(--azul-marinho);
+}
+.aluno:hover {
+  background-color: #b98b40;
+  transform: translateY(-3px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}

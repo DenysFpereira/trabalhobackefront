@@ -1,0 +1,50 @@
+<div class="layout-container">
+
+  <nav class="sidebar">
+    <div class="sidebar-header">
+      <h3>Prisma Acadêmico</h3>
+    </div>
+    
+    <ul class="nav-menu">
+      <li>
+        <a routerLink="cadastro-aluno" routerLinkActive="active-link">Cadastrar Aluno</a>
+      </li>
+      <li>
+        <a routerLink="cadastro-professor" routerLinkActive="active-link">Cadastrar Professor</a>
+      </li>
+      <li>
+        <a routerLink="cadastro-disciplina" routerLinkActive="active-link">Cadastrar Disciplina</a>
+      </li>
+
+      <li>
+        <a routerLink="matricula" routerLinkActive="active-link">Matricular Aluno</a>
+      </li>
+
+      <li>
+        <a routerLink="lancamento-presenca" routerLinkActive="active-link">Lançar Presença</a>
+      </li>
+      <li>
+        <a routerLink="lancamento" routerLinkActive="active-link">Lançamento de Notas</a>
+      </li>
+
+      <li>
+        <a routerLink="listagem-aluno" routerLinkActive="active-link">Listar Alunos</a>
+      </li>
+      <li>
+        <a routerLink="listagem-professor" routerLinkActive="active-link">Listar Professores</a>
+      </li>
+      <li>
+        <a routerLink="listagem-disciplina" routerLinkActive="active-link">Listar Disciplinas</a>
+      </li>
+
+      <li>
+        <a routerLink="/" class="link-voltar">Sair (Voltar ao Portal)</a>
+      </li>
+    </ul>
+  </nav>
+
+  <main class="content">
+    <router-outlet></router-outlet>
+  </main>
+  
+</div>

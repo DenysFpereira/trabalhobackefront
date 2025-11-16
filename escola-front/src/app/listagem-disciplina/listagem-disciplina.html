@@ -1,0 +1,67 @@
+<div class="container-geral-listagem">
+  <div class="card-listagem">
+    <header>
+      <div class="header-info">
+        <h1>Disciplinas Cadastradas</h1>
+        <p>Lista de todas as disciplinas (ativas e inativas).</p>
+      </div>
+
+      <div class="header-actions">
+        <div class="search-bar">
+          <input 
+            type="text" 
+            placeholder="Buscar por nome, código ou professor..."
+            [(ngModel)]="termoBusca"
+            (input)="filtrarDisciplinas()">
+        </div>
+      </div>
+    </header>
+
+    <div class="tabela-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Código</th>
+            <th>Nome (Descrição)</th>
+            <th>Professor</th>
+            <th>Status</th>
+            <th class="acoes-header">Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let disc of disciplinasFiltradas">
+            <td>{{ disc.id }}</td>
+            <td>{{ disc.codigo }}</td>
+            <td class="nome-aluno">{{ disc.descricao }}</td>
+            <td>{{ disc.professor?.nome || 'Não definido' }}</td>
+            
+            <td>
+              <span class="status" [class.status-ativo]="disc.ativo" [class.status-inativo]="!disc.ativo">
+                {{ disc.ativo ? 'Ativo' : 'Inativo' }}
+              </span>
+            </td>
+
+            <td class="acoes-cell">
+              <a class="btn-editar" [routerLink]="['/cadastro-disciplina/editar', disc.id]">
+                Editar
+              </a>
+              
+              <button *ngIf="disc.ativo" class="btn-inativar" (click)="onInativar(disc)">
+                Inativar
+              </button>
+              <button *ngIf="!disc.ativo" class="btn-reativar" (click)="onReativar(disc)">
+                Reativar
+              </button>
+            </td>
+          </tr>
+          
+          <tr *ngIf="disciplinasFiltradas.length === 0">
+            <td colspan="6" class="vazio">Nenhuma disciplina encontrada.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</div>

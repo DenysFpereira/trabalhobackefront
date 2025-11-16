@@ -1,0 +1,70 @@
+<div class="container-geral-listagem">
+
+  <div class="card-listagem">
+    <header>
+      <div class="header-info">
+        <h1>Alunos Cadastrados</h1>
+        <p>Lista de todos os alunos (ativos e inativos).</p>
+      </div>
+
+      <div class="header-actions">
+        <div class="search-bar">
+          <input 
+            type="text" 
+            placeholder="Buscar por nome, RA ou CPF..."
+            [(ngModel)]="termoBusca"
+            (input)="filtrarAlunos()">
+        </div>
+      </div>
+    </header>
+
+    <div class="tabela-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>RA</th>
+            <th>Nome</th>
+            <th>CPF</th>
+            <th>Período</th>
+            <th>Status</th>
+            <th class="acoes-header">Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let aluno of alunosFiltrados">
+            <td>{{ aluno.id }}</td>
+            <td>{{ aluno.ra }}</td>
+            <td class="nome-aluno">{{ aluno.nome }}</td>
+            <td>{{ aluno.cpf }}</td>
+            <td>{{ aluno.periodoAtual }}º</td>
+            
+            <td>
+              <span class="status" [class.status-ativo]="aluno.ativo" [class.status-inativo]="!aluno.ativo">
+                {{ aluno.ativo ? 'Ativo' : 'Inativo' }}
+              </span>
+            </td>
+            
+            <td class="acoes-cell">
+              <a class="btn-editar" [routerLink]="['/cadastro-aluno/editar', aluno.id]">
+                Editar
+              </a>
+              
+              <button *ngIf="aluno.ativo" class="btn-inativar" (click)="onInativar(aluno)">
+                Inativar
+              </button>
+              <button *ngIf="!aluno.ativo" class="btn-reativar" (click)="onReativar(aluno)">
+                Reativar
+              </button>
+            </td>
+          </tr>
+          
+          <tr *ngIf="alunosFiltrados.length === 0">
+            <td colspan="7" class="vazio">Nenhum aluno encontrado.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</div>

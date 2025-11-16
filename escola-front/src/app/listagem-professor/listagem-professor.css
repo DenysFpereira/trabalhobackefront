@@ -1,0 +1,162 @@
+:host {
+  --azul-marinho: #182246;
+  --dourado-mostarda: #d4a24c;
+  --azul-royal: #4046b5;
+  --cinza-claro: #e9e9ef;
+  --branco: #ffffff;
+  --verde-ativo: #28a745;
+  --cinza-inativo: #6c757d;
+}
+
+.container-geral-listagem {
+  padding: 30px 40px;
+  font-family: Arial, sans-serif;
+  background-color: var(--cinza-claro);
+  min-height: 100%;
+}
+
+.card-listagem {
+  padding: 0;
+  background-color: var(--branco);
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+}
+
+header {
+  border-bottom: 2px solid var(--cinza-claro);
+  padding: 20px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header h1 {
+  color: var(--azul-marinho);
+  margin: 0;
+}
+header p {
+  color: #555;
+  font-size: 1rem;
+  margin: 5px 0 0;
+}
+
+.header-actions {
+  display: flex;
+  gap: 15px;
+}
+
+.search-bar input {
+  padding: 10px 15px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  width: 300px;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+.search-bar input:focus {
+  outline: none;
+  border-color: var(--azul-royal);
+  box-shadow: 0 0 0 3px rgba(64, 70, 181, 0.2);
+}
+
+.tabela-wrapper {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 15px 20px;
+  text-align: left;
+  border-bottom: 1px solid var(--cinza-claro);
+}
+
+thead th {
+  background-color: #f4f6f8;
+  color: #333;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+}
+
+tbody tr:last-child td {
+  border-bottom: none;
+}
+
+tbody tr:hover {
+  background-color: #f9f9f9;
+}
+
+.nome-aluno {
+  font-weight: bold;
+  color: var(--azul-marinho);
+}
+
+.vazio {
+  text-align: center;
+  padding: 40px;
+  color: #777;
+}
+
+.status {
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 0.85rem;
+  font-weight: bold;
+  color: white;
+}
+.status-ativo {
+  background-color: var(--verde-ativo);
+}
+.status-inativo {
+  background-color: var(--cinza-inativo);
+}
+
+.acoes-header {
+  text-align: center;
+  width: 200px;
+}
+.acoes-cell {
+  text-align: center;
+}
+
+.acoes-cell button,
+.acoes-cell a.btn-editar {
+  border: none;
+  padding: 8px 12px;
+  font-size: 0.9rem;
+  font-weight: bold;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s;
+  margin: 0 4px;
+  display: inline-block;
+  text-decoration: none;
+  min-width: 80px;
+}
+
+.btn-editar {
+  background-color: var(--azul-royal);
+  color: var(--branco);
+}
+.btn-editar:hover {
+  background-color: var(--azul-marinho);
+}
+
+.btn-inativar {
+  background-color: var(--dourado-mostarda);
+  color: var(--azul-marinho);
+}
+.btn-inativar:hover {
+  background-color: #c29240;
+}
+.btn-reativar {
+  background-color: var(--verde-ativo);
+  color: var(--branco);
+}
+.btn-reativar:hover {
+  background-color: #1e7e34;
+}
