@@ -2,7 +2,7 @@ import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AlunoService } from '../services/aluno.service';
-import { ActivatedRoute, Router } from '@angular/router'; // Importar
+import { ActivatedRoute, Router } from '@angular/router';
 import { Aluno } from '../models/escola.models';
 
 @Component({
@@ -15,13 +15,13 @@ import { Aluno } from '../models/escola.models';
 export class CadastroAlunoComponent implements OnInit {
 
   alunoForm: FormGroup;
-  modoEdicao = false; 
-  alunoId: number | null = null; 
+  modoEdicao = false;
+  alunoId: number | null = null;
 
   private fb = inject(FormBuilder);
   private alunoService = inject(AlunoService);
   private route = inject(ActivatedRoute);
-  private router = inject(Router); 
+  private router = inject(Router);
 
   constructor() {
     this.alunoForm = this.fb.group({
@@ -39,8 +39,10 @@ export class CadastroAlunoComponent implements OnInit {
     if (idParam) {
       this.modoEdicao = true;
       this.alunoId = Number(idParam);
+      
       this.alunoForm.get('cpf')?.disable();
       this.alunoForm.get('ra')?.disable();
+      
       this.carregarDadosDoAluno(this.alunoId);
     }
   }
@@ -48,7 +50,6 @@ export class CadastroAlunoComponent implements OnInit {
   carregarDadosDoAluno(id: number) {
     this.alunoService.buscarAlunoPorId(id).subscribe({
       next: (aluno) => {
-        // 'patchValue' preenche o formulário com os dados do aluno
         this.alunoForm.patchValue(aluno);
       },
       error: (err) => {
@@ -63,13 +64,14 @@ export class CadastroAlunoComponent implements OnInit {
       alert('Formulário inválido. Por favor, preencha todos os campos obrigatórios.');
       return;
     }
+
     const dadosDoFormulario = this.alunoForm.getRawValue();
 
     if (this.modoEdicao && this.alunoId) {
       this.alunoService.atualizarAluno(this.alunoId, dadosDoFormulario).subscribe({
         next: (alunoAtualizado) => {
           alert(`Aluno "${alunoAtualizado.nome}" atualizado com sucesso!`);
-          this.router.navigate(['/listagem-aluno']);
+          this.router.navigate(['/professor/listagem-aluno']);
         },
         error: (err) => {
           alert('Erro ao atualizar aluno.');

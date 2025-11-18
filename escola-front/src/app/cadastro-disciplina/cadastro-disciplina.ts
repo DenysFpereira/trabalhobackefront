@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { Professor, ProfessorService } from '../services/professor.service';
 import { DisciplinaService } from '../services/disciplina.service';
+import { Disciplina } from '../models/escola.models';
 
 @Component({
   selector: 'app-cadastro-disciplina',
@@ -44,7 +45,7 @@ export class CadastroDisciplinaComponent implements OnInit {
       this.modoEdicao = true;
       this.disciplinaId = Number(idParam);
       
-      this.disciplinaForm.get('codigo')?.disable(); // Código não pode ser editado
+      this.disciplinaForm.get('codigo')?.disable();
       
       this.carregarDadosDaDisciplina(this.disciplinaId);
     }
@@ -63,12 +64,13 @@ export class CadastroDisciplinaComponent implements OnInit {
 
   carregarDadosDaDisciplina(id: number) {
     this.disciplinaService.buscarDisciplinaPorId(id).subscribe({
-      next: (disciplina) => {
+      next: (disciplina: Disciplina) => {
         this.disciplinaForm.patchValue({
           codigo: disciplina.codigo,
           descricao: disciplina.descricao,
           ementa: disciplina.ementa,
         });
+
         if (disciplina.professor) {
           const professorSelecionado = this.professores.find(p => p.id === disciplina.professor.id);
           if (professorSelecionado) {
@@ -95,7 +97,7 @@ export class CadastroDisciplinaComponent implements OnInit {
       this.disciplinaService.atualizarDisciplina(this.disciplinaId, dadosDoFormulario).subscribe({
         next: (disciplinaAtualizada) => {
           alert(`Disciplina "${disciplinaAtualizada.descricao}" atualizada!`);
-          this.router.navigate(['/listagem-disciplina']);
+          this.router.navigate(['/professor/listagem-disciplina']);
         },
         error: (err) => {
           alert('Erro ao atualizar disciplina.');

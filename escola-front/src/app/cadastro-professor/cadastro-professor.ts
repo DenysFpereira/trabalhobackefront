@@ -67,7 +67,7 @@ export class CadastroProfessorComponent implements OnInit {
       this.professorService.atualizarProfessor(this.professorId, dadosDoFormulario).subscribe({
         next: (profAtualizado) => {
           alert(`Professor "${profAtualizado.nome}" atualizado com sucesso!`);
-          this.router.navigate(['/listagem-professor']);
+          this.router.navigate(['/professor/listagem-professor']);
         },
         error: (err) => {
           alert('Erro ao atualizar professor.');
