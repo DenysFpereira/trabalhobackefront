@@ -12,27 +12,27 @@ import { CadastroDisciplinaComponent } from './cadastro-disciplina/cadastro-disc
 import { ListagemDisciplinaComponent } from './listagem-disciplina/listagem-disciplina';
 import { MatriculaComponent } from './matricula/matricula';
 import { LancamentoPresencaComponent } from './lancamento-presenca/lancamento-presenca';
-
 import { AlunoLoginComponent } from './aluno-login/aluno-login';
 import { AlunoBoletimComponent } from './aluno-boletim/aluno-boletim';
 
+import { BackupBancoComponent } from './backup-banco/backup-banco';
+
 export const routes: Routes = [
-  
-  { 
-    path: '', 
-    component: PortalComponent 
-  },
-  
   {
-    path: 'professor', 
+    path: '',
+    component: PortalComponent,
+  },
+
+  {
+    path: 'professor',
     component: ProfessorLayoutComponent,
     children: [
       { path: 'lancamento', component: LancamentoNotasComponent },
-      
+
       { path: 'cadastro-aluno', component: CadastroAlunoComponent },
       { path: 'cadastro-aluno/editar/:id', component: CadastroAlunoComponent },
       { path: 'listagem-aluno', component: ListagemAlunoComponent },
-      
+
       { path: 'cadastro-professor', component: CadastroProfessorComponent },
       { path: 'cadastro-professor/editar/:id', component: CadastroProfessorComponent },
       { path: 'listagem-professor', component: ListagemProfessorComponent },
@@ -43,23 +43,25 @@ export const routes: Routes = [
 
       { path: 'matricula', component: MatriculaComponent },
       { path: 'lancamento-presenca', component: LancamentoPresencaComponent },
+
+      { path: '', redirectTo: 'lancamento', pathMatch: 'full' },
       
-      { path: '', redirectTo: 'lancamento', pathMatch: 'full' }
-    ]
+      { path: 'backup-banco', component: BackupBancoComponent },
+    ],
   },
-  
-  { 
-    path: 'acesso-aluno', 
-    component: AlunoLoginComponent 
+
+  {
+    path: 'acesso-aluno',
+    component: AlunoLoginComponent,
   },
-  { 
-    path: 'aluno-boletim/:ra', 
-    component: AlunoBoletimComponent 
+  {
+    path: 'aluno-boletim/:ra',
+    component: AlunoBoletimComponent,
   },
-  
-  { 
-    path: '**', 
-    redirectTo: '', 
-    pathMatch: 'full' 
-  }
+
+  {
+    path: '**',
+    redirectTo: '',
+    pathMatch: 'full',
+  },
 ];

@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { LancamentoPresencaComponent } from './lancamento-presenca';
+import { BackupBancoComponent } from './backup-banco';
 
-describe('LancamentoPresenca', () => {
-  let component: LancamentoPresencaComponent;
-  let fixture: ComponentFixture<LancamentoPresencaComponent>;
+describe('BackupBanco', () => {
+  let component: BackupBancoComponent;
+  let fixture: ComponentFixture<BackupBancoComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [LancamentoPresencaComponent]
+      imports: [BackupBancoComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(LancamentoPresencaComponent);
+    fixture = TestBed.createComponent(BackupBancoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

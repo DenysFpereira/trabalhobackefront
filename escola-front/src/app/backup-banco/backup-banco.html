@@ -1,0 +1,19 @@
+<div class="portal-container">
+  <div class="portal-box">
+    <div class="portal-header">
+      <h1>Prisma Acadêmico</h1>
+      <p>Selecione uma opção</p>
+    </div>
+    
+    <div class="portal-actions">
+      <a (click)="iniciarBackup()" class="portal-link professor" [class.disabled]="isLoading">
+        <span *ngIf="!isLoading">Realizar Backup</span>
+        <span *ngIf="isLoading">Processando...</span>
+      </a>
+    </div>
+
+    <div *ngIf="statusMessage" class="status-message">
+      {{ statusMessage }}
+    </div>
+  </div>
+</div>
